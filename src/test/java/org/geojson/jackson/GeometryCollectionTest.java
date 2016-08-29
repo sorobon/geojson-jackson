@@ -12,9 +12,9 @@ public class GeometryCollectionTest {
 
 	@Test
 	public void itShouldSerialize() throws Exception {
-		GeometryCollection gc = new GeometryCollection();
-		gc.add(PointFactory.create(100, 0));
-		gc.add(LineStringFactory.create(PositionFactory.create(101, 0), PositionFactory.create(102, 1)));
+		Point point = PointFactory.create(100, 0);
+		LineString lineString = LineStringFactory.create(PositionFactory.create(101, 0), PositionFactory.create(102, 1));
+		GeometryCollection gc = GeometryCollectionFactory.create(point, lineString);
 		assertEquals("{\"type\":\"GeometryCollection\","
 						+ "\"geometries\":[{\"type\":\"Point\",\"coordinates\":[100.0,0.0]},"
 						+ "{\"type\":\"LineString\",\"coordinates\":[[101.0,0.0],[102.0,1.0]]}]}",

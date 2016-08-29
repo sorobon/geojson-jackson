@@ -1,13 +1,12 @@
 package org.geojson;
 
-import org.geojson.jackson.CrsType;
-
 import java.io.Serializable;
 import java.util.Map;
 
 public class Crs implements Serializable {
 
 	public CrsType type = CrsType.name;
+
 	public Map<String, Object> properties;
 
 	@Override

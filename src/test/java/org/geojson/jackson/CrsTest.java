@@ -2,6 +2,7 @@ package org.geojson.jackson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.geojson.Crs;
+import org.geojson.CrsType;
 import org.geojson.GeoJsonObject;
 import org.geojson.Point;
 import org.junit.Test;

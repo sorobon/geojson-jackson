@@ -76,7 +76,7 @@ public class GeoJsonObjectVisitorTest {
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] { { new GeometryCollection() }, { new FeatureCollection() },
 				{ PointFactory.create(12D, 13D) }, { new Feature() },
-				{ new MultiLineString(Arrays.asList(PositionFactory.create(12D, 13D))) }, { new Polygon() },
+				{ MultiLineStringFactory.create(Arrays.asList(PositionFactory.create(12D, 13D))) }, { new Polygon() },
 				{ new MultiPolygon() }, { new MultiPoint() }, { new LineString() } });
 	}
 
