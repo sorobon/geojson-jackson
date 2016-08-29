@@ -7,15 +7,15 @@ public class GeometryCollection extends GeoJsonObject {
 
 	public List<GeoJsonObject> geometries;
 
-	public GeometryCollection add(GeoJsonObject geometry) {
-		if (geometries == null) geometries = new ArrayList<GeoJsonObject>();
-		geometries.add(geometry);
-		return this;
-	}
-
 	@Override
 	public <T> T accept(GeoJsonObjectVisitor<T> geoJsonObjectVisitor) {
 		return geoJsonObjectVisitor.visit(this);
+	}
+
+	GeometryCollection add(GeoJsonObject geometry) {
+		if (geometries == null) geometries = new ArrayList<GeoJsonObject>();
+		geometries.add(geometry);
+		return this;
 	}
 
 	@Override

@@ -8,20 +8,21 @@ import java.util.Map;
 public class Feature extends GeoJsonObject {
 
 	public String id;
+
 	@JsonInclude(JsonInclude.Include.ALWAYS)
 	public Map<String, Object> properties;
 
 	@JsonInclude(JsonInclude.Include.ALWAYS)
 	public GeoJsonObject geometry;
 
-	public void addProperty(String key, Object value) {
-		if (properties == null) properties = new HashMap<String, Object>();
-		properties.put(key, value);
-	}
-
 	@Override
 	public <T> T accept(GeoJsonObjectVisitor<T> geoJsonObjectVisitor) {
 		return geoJsonObjectVisitor.visit(this);
+	}
+
+	void addProperty(String key, Object value) {
+		if (properties == null) properties = new HashMap<String, Object>();
+		properties.put(key, value);
 	}
 
 	@Override

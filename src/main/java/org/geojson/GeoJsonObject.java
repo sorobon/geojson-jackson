@@ -26,7 +26,7 @@ import java.util.Arrays;
 public abstract class GeoJsonObject implements Serializable {
 
 	public Crs crs;
-	public double[] bbox;
+	public Double[] bbox;
 
 	public abstract <T> T accept(GeoJsonObjectVisitor<T> geoJsonObjectVisitor);
 

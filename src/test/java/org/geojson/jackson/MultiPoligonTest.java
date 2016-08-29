@@ -1,9 +1,7 @@
 package org.geojson.jackson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.geojson.MultiPolygon;
-import org.geojson.Polygon;
-import org.geojson.PositionFactory;
+import org.geojson.*;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -14,12 +12,10 @@ public class MultiPoligonTest {
 
 	@Test
 	public void itShouldSerialize() throws Exception {
-		MultiPolygon multiPolygon = new MultiPolygon();
-		multiPolygon.add(new Polygon(PositionFactory.create(102, 2), PositionFactory.create(103, 2), PositionFactory.create(103, 3),
-				PositionFactory.create(102, 3), PositionFactory.create(102, 2)));
-		Polygon polygon = new Polygon(MockData.EXTERNAL);
-		polygon.addInteriorRing(MockData.INTERNAL);
-		multiPolygon.add(polygon);
+		Polygon anotherPolygon = PolygonFactory.create(PositionFactory.create(102, 2), PositionFactory.create(103, 2), PositionFactory.create(103, 3),
+				PositionFactory.create(102, 3), PositionFactory.create(102, 2));
+		Polygon polygon = PolygonFactory.create(LineStringFactory.create(MockData.EXTERNAL), LineStringFactory.create(MockData.INTERNAL));
+		MultiPolygon multiPolygon = MultiPolygonFactory.create(anotherPolygon, polygon);
 		assertEquals(
 				"{\"type\":\"MultiPolygon\",\"coordinates\":[[[[102.0,2.0],[103.0,2.0],[103.0,3.0],[102.0,3.0],[102.0,2.0]]],"
 						+ "[[[100.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]],"

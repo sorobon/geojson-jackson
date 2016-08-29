@@ -1,5 +1,6 @@
 package org.geojson;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class MultiPolygonFactory {
@@ -11,6 +12,10 @@ public class MultiPolygonFactory {
             multiPolygon.add(polygon);
         }
         return multiPolygon;
+    }
+
+    public static MultiPolygon create(Polygon ... polygons) {
+        return create(Arrays.asList(polygons));
     }
 
 }

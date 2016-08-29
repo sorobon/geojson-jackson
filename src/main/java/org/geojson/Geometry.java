@@ -7,24 +7,20 @@ public abstract class Geometry<T> extends GeoJsonObject {
 
 	public List<T> coordinates;
 
-	public Geometry() { }
-
-	public Geometry(T ... elements) {
-		for (T coordinate : elements) {
-			add(coordinate);
-		}
-	}
-
-	public Geometry<T> add(T elements) {
-		if (coordinates == null) coordinates = new ArrayList<T>();
+	Geometry<T> add(T elements) {
+		initCoordinates();
 		coordinates.add(elements);
 		return this;
 	}
 
-	public Geometry<T> add(int position, T elements) {
-		if (coordinates == null) coordinates = new ArrayList<T>();
+	Geometry<T> add(int position, T elements) {
+		initCoordinates();
 		coordinates.add(position, elements);
 		return this;
+	}
+
+	private void initCoordinates() {
+		if (coordinates == null) coordinates = new ArrayList<T>();
 	}
 
 

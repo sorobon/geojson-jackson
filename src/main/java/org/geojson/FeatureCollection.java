@@ -1,14 +1,18 @@
 package org.geojson;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class FeatureCollection extends GeoJsonObject {
 
 	public List<Feature> features;
 
-	public FeatureCollection add(Feature feature) {
+	@Override
+	public <T> T accept(GeoJsonObjectVisitor<T> geoJsonObjectVisitor) {
+		return geoJsonObjectVisitor.visit(this);
+	}
+
+	FeatureCollection add(Feature feature) {
 		initFeatures();
 		features.add(feature);
 		return this;
@@ -16,16 +20,6 @@ public class FeatureCollection extends GeoJsonObject {
 
 	private void initFeatures() {
 		if(features == null) features = new ArrayList<Feature>();
-	}
-
-	public void addAll(Collection<Feature> features) {
-		initFeatures();
-		this.features.addAll(features);
-	}
-
-	@Override
-	public <T> T accept(GeoJsonObjectVisitor<T> geoJsonObjectVisitor) {
-		return geoJsonObjectVisitor.visit(this);
 	}
 
 	@Override

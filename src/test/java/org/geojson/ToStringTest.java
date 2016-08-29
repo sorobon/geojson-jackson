@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.geojson.PositionFactory.create;
 import static org.junit.Assert.assertEquals;
 
 public class ToStringTest {
@@ -50,8 +49,8 @@ public class ToStringTest {
 
 	@Test
 	public void itShouldToStringPolygon() throws Exception {
-		Polygon geometry = new Polygon(create(10, 20), create(30, 40), create(10, 40),
-				create(10, 20));
+		Polygon geometry = PolygonFactory.create(PositionFactory.create(10, 20), PositionFactory.create(30, 40), PositionFactory.create(10, 40),
+				PositionFactory.create(10, 20));
 		assertEquals(
 				"Polygon{} Geometry{coordinates=[[Position{longitude=10.0, latitude=20.0, altitude=null, additionalElements=null}, "
 						+ "Position{longitude=30.0, latitude=40.0, altitude=null, additionalElements=null}, Position{longitude=10.0, latitude=40.0, altitude=null, additionalElements=null}, "
@@ -61,10 +60,11 @@ public class ToStringTest {
 
 	@Test
 	public void itShouldToStringMultiPolygon() throws Exception {
-		MultiPolygon geometry = new MultiPolygon(new Polygon(create(10, 20), create(30, 40),
-				create(10, 40), create(10, 20)));
-		geometry.add(new Polygon(create(5, 20), create(30, 40), create(10, 40), create(5,
-				20)));
+		Polygon polygon = PolygonFactory.create(PositionFactory.create(10, 20), PositionFactory.create(30, 40),
+				PositionFactory.create(10, 40), PositionFactory.create(10, 20));
+		Polygon anotherPolygon = PolygonFactory.create(PositionFactory.create(5, 20), PositionFactory.create(30, 40), PositionFactory.create(10, 40), PositionFactory.create(5,
+				20));
+		MultiPolygon geometry = MultiPolygonFactory.create(polygon, anotherPolygon);
 		assertEquals("MultiPolygon{} Geometry{coordinates=[[[Position{longitude=10.0, latitude=20.0, altitude=null, additionalElements=null}, "
 				+ "Position{longitude=30.0, latitude=40.0, altitude=null, additionalElements=null}, "
 				+ "Position{longitude=10.0, latitude=40.0, altitude=null, additionalElements=null}, "
@@ -78,7 +78,7 @@ public class ToStringTest {
 
 	@Test
 	public void itShouldToStringLineString() throws Exception {
-		LineString geometry = LineStringFactory.create(create(49, 9), create(41, 1));
+		LineString geometry = LineStringFactory.create(PositionFactory.create(49, 9), PositionFactory.create(41, 1));
 		assertEquals("LineString{} MultiPoint{} Geometry{coordinates=["
 				+ "Position{longitude=49.0, latitude=9.0, altitude=null, additionalElements=null}, "
 						+ "Position{longitude=41.0, latitude=1.0, altitude=null, additionalElements=null}]} GeoJsonObject{}",
@@ -87,8 +87,8 @@ public class ToStringTest {
 
 	@Test
 	public void itShouldToStringMultiLineString() throws Exception {
-		MultiLineString geometry = new MultiLineString(Arrays.asList(create(49, 9), create(41, 1)));
-		geometry.add(Arrays.asList(create(10, 20), create(30, 40)));
+		MultiLineString geometry = MultiLineStringFactory.create(Arrays.asList(PositionFactory.create(49, 9), PositionFactory.create(41, 1)));
+		geometry.add(Arrays.asList(PositionFactory.create(10, 20), PositionFactory.create(30, 40)));
 		assertEquals("MultiLineString{} Geometry{coordinates=[[Position{longitude=49.0, latitude=9.0, altitude=null, additionalElements=null}, "
 				+ "Position{longitude=41.0, latitude=1.0, altitude=null, additionalElements=null}], "
 				+ "[Position{longitude=10.0, latitude=20.0, altitude=null, additionalElements=null}, "

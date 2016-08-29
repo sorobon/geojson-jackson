@@ -15,7 +15,7 @@ public class PolygonTest {
 
 	@Test
 	public void itShouldSerialize() throws Exception {
-		Polygon polygon = new Polygon(MockData.EXTERNAL);
+		Polygon polygon = PolygonFactory.create(LineStringFactory.create(MockData.EXTERNAL));
 		assertEquals("{\"type\":\"Polygon\",\"coordinates\":"
 				+ "[[[100.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]]}",
 				mapper.writeValueAsString(polygon));
@@ -23,7 +23,7 @@ public class PolygonTest {
 
 	@Test
 	public void itShouldSerializeWithHole() throws Exception {
-		Polygon polygon = new Polygon(MockData.EXTERNAL);
+		Polygon polygon = PolygonFactory.create(LineStringFactory.create(MockData.EXTERNAL));
 		polygon.addInteriorRing(MockData.INTERNAL);
 		assertEquals("{\"type\":\"Polygon\",\"coordinates\":"
 				+ "[[[100.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]],"
