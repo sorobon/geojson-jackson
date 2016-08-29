@@ -78,7 +78,7 @@ public class ToStringTest {
 
 	@Test
 	public void itShouldToStringLineString() throws Exception {
-		LineString geometry = new LineString(create(49, 9), create(41, 1));
+		LineString geometry = LineStringFactory.create(create(49, 9), create(41, 1));
 		assertEquals("LineString{} MultiPoint{} Geometry{coordinates=["
 				+ "Position{longitude=49.0, latitude=9.0, altitude=null, additionalElements=null}, "
 						+ "Position{longitude=41.0, latitude=1.0, altitude=null, additionalElements=null}]} GeoJsonObject{}",

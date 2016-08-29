@@ -2,6 +2,7 @@ package org.geojson.jackson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.geojson.MultiPoint;
+import org.geojson.MultiPointFactory;
 import org.geojson.Position;
 import org.geojson.PositionFactory;
 import org.junit.Test;
@@ -17,7 +18,7 @@ public class MultiPointTest {
 
 	@Test
 	public void itShouldSerializeMultiPoint() throws Exception {
-		MultiPoint multiPoint = new MultiPoint(PositionFactory.create(100, 0), PositionFactory.create(101, 1));
+		MultiPoint multiPoint = MultiPointFactory.create(PositionFactory.create(100, 0), PositionFactory.create(101, 1));
 		assertEquals("{\"type\":\"MultiPoint\",\"coordinates\":[[100.0,0.0],[101.0,1.0]]}",
 				mapper.writeValueAsString(multiPoint));
 	}

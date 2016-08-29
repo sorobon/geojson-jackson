@@ -9,7 +9,7 @@ public abstract class Geometry<T> extends GeoJsonObject {
 
 	public Geometry() { }
 
-	public Geometry(T... elements) {
+	public Geometry(T ... elements) {
 		for (T coordinate : elements) {
 			add(coordinate);
 		}
@@ -20,6 +20,13 @@ public abstract class Geometry<T> extends GeoJsonObject {
 		coordinates.add(elements);
 		return this;
 	}
+
+	public Geometry<T> add(int position, T elements) {
+		if (coordinates == null) coordinates = new ArrayList<T>();
+		coordinates.add(position, elements);
+		return this;
+	}
+
 
 	@Override
 	public boolean equals(Object o) {
