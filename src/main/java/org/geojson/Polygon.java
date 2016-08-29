@@ -18,35 +18,36 @@ public class Polygon extends Geometry<List<Position>> {
 		add(Arrays.asList(polygon));
 	}
 
-	void setExteriorRing(List<Position> points) {
-		coordinates.add(0, points);
+	public void setExteriorRing(List<Position> points) {
+		add(0, points);
 	}
 
 	@JsonIgnore
-	List<Position> getExteriorRing() {
+	public List<Position> getExteriorRing() {
 		assertExteriorRing();
 		return coordinates.get(0);
 	}
 
 	@JsonIgnore
-	List<List<Position>> getInteriorRings() {
+	public List<List<Position>> getInteriorRings() {
 		assertExteriorRing();
 		return coordinates.subList(1, coordinates.size());
 	}
 
-	List<Position> getInteriorRing(int index) {
+	public List<Position> getInteriorRing(int index) {
 		assertExteriorRing();
 		return coordinates.get(1 + index);
 	}
 
-	public void addInteriorRing(List<Position> points) {
+	public Polygon addInteriorRing(List<Position> points) {
 		assertExteriorRing();
-		coordinates.add(points);
+		add(points);
+		return this;
 	}
 
 	public void addInteriorRing(Position... points) {
 		assertExteriorRing();
-		coordinates.add(Arrays.asList(points));
+		add(Arrays.asList(points));
 	}
 
 	private void assertExteriorRing() {

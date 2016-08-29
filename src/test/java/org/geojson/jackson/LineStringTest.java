@@ -1,10 +1,7 @@
 package org.geojson.jackson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.geojson.LineString;
-import org.geojson.MultiPoint;
-import org.geojson.Position;
-import org.geojson.PositionFactory;
+import org.geojson.*;
 import org.junit.Test;
 
 import java.util.List;
@@ -18,7 +15,7 @@ public class LineStringTest {
 
 	@Test
 	public void itShouldSerializeMultiPoint() throws Exception {
-		MultiPoint lineString = new LineString(PositionFactory.create(100, 0), PositionFactory.create(101, 1));
+		MultiPoint lineString = LineStringFactory.create(PositionFactory.create(100, 0), PositionFactory.create(101, 1));
 		assertEquals("{\"type\":\"LineString\",\"coordinates\":[[100.0,0.0],[101.0,1.0]]}",
 				mapper.writeValueAsString(lineString));
 	}
